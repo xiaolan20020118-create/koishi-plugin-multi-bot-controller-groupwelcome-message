@@ -1,25 +1,28 @@
-# koishi-plugin-multi-bot-controller-groupwelcome-message
+# koishi-plugin-multibot-groupwelcome
 
-群组欢迎/退群消息插件 - 配合 [multi-bot-controller](https://github.com/koishijs/multi-bot-controller) 为多个 Bot 管理群组欢迎和退群消息。
+群组欢迎/退群消息插件 - 多个 Bot 共用同一 Koishi 实例，为每个 Bot 独立管理群组欢迎和退群消息，无需其他插件支持。
 
 ## 功能特性
 
-- 🤖 **多 Bot 支持**：配合 multi-bot-controller 为不同 Bot 配置独立的欢迎/退群消息
+- 🤖 **多 Bot 支持**：多个 Bot 登录在同一 Koishi 实例中，按「平台 + Bot ID」独立配置各自的欢迎/退群消息
 - ⏱️ **延迟合并发送**：短时间内的多条入群/退群事件可合并为一条消息，避免刷屏
 - 💬 **丰富的消息变量**：支持用户昵称、头像、群信息、时间、一言等多种变量
 - 📊 **Table 表格配置**：可视化配置界面，按群组管理消息
+- 🔌 **零外部依赖**：不依赖 multi-bot-controller 等任何控制器插件，直接填写平台与 Bot ID 即可
 
 ## 安装
 
-\`\`\`bash
-npm install koishi-plugin-multi-bot-controller-groupwelcome-message
-\`\`\`
+```bash
+npm install koishi-plugin-multibot-groupwelcome
+```
 
 ## 配置示例
 
 在插件配置界面中：
 
-1. 选择要使用的 Bot（从 multi-bot-controller 已配置的 Bot 中选择）
+1. 添加 Bot 并填写（均可在**控制台 - 机器人列表**中查看）：
+   - **平台名称**：如 onebot / discord / telegram
+   - **Bot 自身账号 ID**：即 selfId，机器人列表中显示的账号号
 2. 选择**延迟模式**：
    - **滑动窗口**：每个新事件重置定时器，最大化合并效果（默认）
    - **固定窗口**：第一个事件触发后不再重置，延迟时间可预测
@@ -51,6 +54,8 @@ npm install koishi-plugin-multi-bot-controller-groupwelcome-message
 | {group_count} | 群组人数 | 100 |
 | {time} | 当前时间 | 2026/02/14 20:00:00 |
 | {hitokoto} | 一言 | 这一生，我仅为我自己而活。 |
+| {br} | 换行 | |
+| {imageURL="..."} | 插入图片，支持本地路径、file:// URL、http(s) URL（本地资源需在配置中启用） | |
 
 **注意**：由于 OneBot 协议限制，退群事件不包含用户昵称信息。因此退群消息建议使用 `{id}` 而非 `{user}`。若消息中同时包含 `{user}` 和 `{id}`，插件会自动忽略 `{user}` 变量。
 
@@ -87,10 +92,17 @@ npm install koishi-plugin-multi-bot-controller-groupwelcome-message
 - {time}：取最后事件的时间
 - {hitokoto}：只获取一次
 
+## 从旧版本迁移
+
+若你此前使用 `koishi-plugin-multi-bot-controller-groupwelcome-message`：
+
+1. 卸载旧插件，安装本插件
+2. 配置不再从 multi-bot-controller 的下拉列表中选择 Bot，改为手动填写**平台名称**与**Bot 自身账号 ID**（两者均可在控制台-机器人列表中查看）
+3. 其余配置（延迟模式、消息模板、群组 ID）格式不变，但需在新插件下重新填写
+
 ## 依赖项
 
 - [koishi](https://github.com/koishijs/koishi) >= 4.18.7
-- [koishi-plugin-multi-bot-controller](https://github.com/koishijs/multi-bot-controller) >= 1.0.6
 - [koishi-plugin-markdown](https://github.com/koishijs/plugin-markdown) >= 1.1.1
 
 ## License

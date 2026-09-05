@@ -19,7 +19,8 @@ export interface LeaveMessageConfig {
 
 /** 单个 Bot 的配置 */
 export interface BotConfig {
-  botId: string                          // Bot ID (platform:selfId)
+  platform: string                       // 平台名称（如 onebot / discord / telegram）
+  botId: string                          // Bot 自身账号 ID（selfId）
   delayMode: DelayMode                   // 延迟模式：sliding（滑动窗口）或 fixed（固定窗口）
   welcomeMessages: WelcomeMessageConfig[]   // 欢迎消息列表 (table 展示)
   leaveMessages: LeaveMessageConfig[]      // 离开消息列表 (table 展示)

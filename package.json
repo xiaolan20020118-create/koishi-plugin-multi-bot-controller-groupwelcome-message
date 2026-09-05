@@ -1,7 +1,7 @@
 {
-  "name": "koishi-plugin-multi-bot-controller-groupwelcome-message",
-  "description": "Multi-bot group welcome/leave message controller - manages group welcome and leave messages for multiple bots with per-group configuration support",
-  "version": "1.0.1",
+  "name": "koishi-plugin-multibot-groupwelcome",
+  "description": "Multi-bot group welcome/leave messages - manage per-group welcome and leave messages for multiple bots sharing one Koishi instance, with no extra plugins required",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -10,19 +10,20 @@
   ],
   "license": "MIT",
   "author": "xiaolan20020118 <xiaolan20020118@gmail.com>",
-  "homepage": "https://github.com/PinkElysiaDev/multi-bot-controller-groupwelcome-message#readme",
+  "homepage": "https://github.com/PinkElysiaDev/multibot-groupwelcome#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PinkElysiaDev/multi-bot-controller-groupwelcome-message.git"
+    "url": "git+https://github.com/PinkElysiaDev/multibot-groupwelcome.git"
   },
   "bugs": {
-    "url": "https://github.com/PinkElysiaDev/multi-bot-controller-groupwelcome-message/issues"
+    "url": "https://github.com/PinkElysiaDev/multibot-groupwelcome/issues"
   },
   "keywords": [
     "bot",
     "chatbot",
     "koishi",
     "plugin",
+    "multibot",
     "multi-bot",
     "welcome-message",
     "group-message",
@@ -30,15 +31,15 @@
     "delayed-message"
   ],
   "peerDependencies": {
-    "koishi": "^4.18.7",
-    "koishi-plugin-multi-bot-controller": "^1.0.6"
+    "koishi": "^4.18.7"
   },
   "dependencies": {
     "koishi-plugin-markdown": "^1.1.1"
   },
   "koishi": {
     "description": {
-      "zh": "多 Bot 群组欢迎/退群消息控制器 - 为多个 Bot 管理群组欢迎和退群消息，支持按群组配置不同消息"
+      "zh": "多 Bot 群组欢迎/退群消息 - 多个 Bot 共用同一实例，为每个 Bot 独立配置按群组的欢迎/退群消息，无需其他插件支持",
+      "en": "Multi-bot group welcome/leave messages - configure per-group welcome and leave messages for every bot sharing one Koishi instance, with no extra plugins required"
     }
   }
 }
